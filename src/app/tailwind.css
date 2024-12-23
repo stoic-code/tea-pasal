@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /* container-values according to design https://ooty-theme.myshopify.com/collections/all*/
+    .container {
+        @apply mx-auto max-w-full px-[30px] md:max-w-[960px] md:px-[15px] xl:max-w-[1100px];
+    }
+
+    .container-fluid {
+        @apply mx-auto max-w-full px-[30px] md:px-[15px];
+    }
+
+    .leading-sm {
+        @apply leading-[1.45];
+    }
+    .leading-base {
+        @apply leading-normal;
+    }
+    .leading-lg {
+        @apply leading-[1.53];
+    }
+    .leading-xl {
+        @apply leading-[1.7]; /* 30.6  */
+    }
+    .leading-2xl {
+        @apply leading-[2];
+    }
+
+    .text-shrink {
+        @apply leading-sm;
+    }
+
+    .banner-subtitle {
+        @apply text-[24px] sm:text-[24px] md:text-[24px] lg:text-[24px] xl:text-[26px];
+    }
+
+    .banner-header {
+        @apply font-serif text-[40px]  font-bold uppercase sm:text-[48px] md:text-[56px] lg:text-[64px] xl:text-[72px];
+    }
+
+    .banner-description {
+        @apply leading-xl text-[16px] font-normal md:text-[18px];
+    }
+
+    .breadcrumb-header {
+        @apply font-serif text-[24px] font-bold  uppercase sm:text-[24px] md:text-[24px] lg:text-[32px] xl:text-[40px];
+    }
+
+    .breadcrumb-title {
+        @apply text-[16px] xl:text-[18px];
+    }
+
+    /*  usually banners and page headers are differnt in sizes. */
+
+    /*headers 
+        48px-700  
+        24px 700 
+        22px-700 
+        20px 400 
+        18px 600  
+  */
+
+    /* donot mix.. only use it for font size. not for boldness not for leading.  not for colors too?  */
+
+    /* wrappers-m
+    
+    */
+
+    /* wrappers-p
+    
+    */
+
+    .header-styles {
+        @apply font-serif font-bold text-header-color;
+    }
+
+    .header-2xs {
+        @apply header-styles text-[16px];
+    }
+    .header-xs {
+        @apply header-styles text-[16px] sm:text-[16px] md:text-[16px] lg:text-[16px] xl:text-[18px];
+    }
+    .header-sm {
+        @apply header-styles text-[16px] sm:text-[16px] md:text-[16px] lg:text-[16px] xl:text-[20px];
+    }
+    .header-base {
+        @apply header-styles text-[16px] sm:text-[16px] md:text-[16px] lg:text-[16px] xl:text-[22px];
+    }
+    .header-lg {
+        @apply header-styles text-[24px] sm:text-[24px] md:text-[24px] lg:text-[24px] xl:text-[24px];
+    }
+    .header-xl {
+        @apply header-styles text-[24px] sm:text-[24px] md:text-[24px] lg:text-[24px] xl:text-[30px];
+    }
+    .header-2xl {
+        @apply header-styles text-[24px] sm:text-[24px] md:text-[32px] lg:text-[40px] xl:text-[48px];
+    }
+
+    .header {
+        @apply header-2xl font-serif font-bold text-header-color;
+    }
+
+    .sub-header {
+        @apply header-lg  font-serif font-bold text-header-color;
+    }
+
+    .support-header {
+        @apply header-base font-serif font-bold text-header-color;
+    }
+
+    .section-header {
+        @apply header-base font-serif  font-bold text-header-color;
+    }
+
+    .sub-section-header {
+        @apply header-base font-serif font-bold text-header-color;
+    }
+
+    .minor-header {
+        @apply header-xs font-serif font-bold text-header-color;
+    }
+
+    .title {
+        @apply text-[14px]  lg:text-[17px] xl:text-[20px];
+    }
+
+    .sub-title {
+        @apply text-[18px] leading-normal;
+    }
+
+    .text-normal {
+        @apply text-[16px] text-normal-color  xl:text-[18px];
+    }
+
+    .description {
+        @apply leading-xl text-[16px] xl:text-[18px];
+    }
+
+    .short-description {
+        @apply description;
+    }
+
+    .description-lg {
+        @apply leading-2xl text-[16px] xl:text-[20px];
+    }
+
+    .description-xl {
+        @apply description-lg leading-lg;
+    }
+
+    .btn {
+        @apply cursor-pointer rounded-[30px] bg-primary px-11 py-3 text-[16px] text-white transition-all duration-700 hover:bg-primary-light disabled:opacity-50;
+    }
+    .btn-sm {
+        @apply btn cursor-pointer rounded-[14px] bg-primary px-5 py-2 text-[14px];
+    }
+
+    .price {
+        @apply text-[16px] font-semibold leading-normal xl:text-[18px];
+    }
+
+    .discount-price {
+        @apply text-[14.4px] font-normal leading-normal text-body line-through opacity-50;
+    }
+
+    .required-field {
+        @apply after:content-['_*'];
+    }
+
+    .form-label {
+        @apply mb-2 block text-sm capitalize;
+    }
+
+    .form-control {
+        @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary focus:outline-none;
+    }
+    .form-control-simple {
+        @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900;
+    }
+    .form-error {
+        @apply text-sm text-red-500;
+    }
+
+    .product-container {
+        @apply relative inline-block cursor-pointer before:absolute before:left-0 before:top-0 before:h-full before:w-full before:transition-all before:duration-[0.5s] before:ease-in-out before:content-[''] hover:before:bg-primary hover:before:opacity-50;
+    }
+
+    .btn-entry {
+        @apply hover:bg-primary absolute right-1 top-[50%] flex h-[32px] w-[32px] translate-y-[-50%] items-center justify-center rounded-full bg-white opacity-0 transition-all duration-[1s] group-hover:translate-x-[-12px] group-hover:opacity-100;
+    }
+    .badge {
+        @apply rounded-full bg-primary-dark-20 px-4 py-2 text-white hover:bg-primary-light;
+    }
+    .badge-xs {
+        @apply rounded-full bg-primary-dark-20 px-2 py-1 text-white hover:bg-primary-light;
+    }
+
+    .playfair {
+        @apply font-serif;
+    }
+    
+}

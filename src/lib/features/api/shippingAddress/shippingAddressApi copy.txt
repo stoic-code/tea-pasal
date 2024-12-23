@@ -1,0 +1,49 @@
+import { RTK_TAGS, emptySplitApi } from '@/lib/emptySplitApi'
+
+export const shippingaddressApi = emptySplitApi.injectEndpoints({
+    endpoints: (builder) => ({
+        Shippingaddress: builder.query<object, void>({
+            // query: ({ page = 1, size = PAGE_SIZE }) => {
+            query: () => {
+                return {
+                    // url: `shipping-address/?page=${page}&size=${size}`,
+                    url: `shipping-address/?page=2000`
+                }
+            },
+            providesTags: [RTK_TAGS.ALL_SHIPPING]
+        }),
+        storeShippingaddress: builder.mutation({
+            query: (formData) => {
+                return {
+                    url: `shipping-address/`,
+                    method: 'POST',
+                    body: formData
+                }
+            },
+            invalidatesTags: [RTK_TAGS.ALL_SHIPPING]
+        }),
+        updateGymattendance: builder.mutation({
+            query: ({ id, formData }) => {
+                return {
+                    url: `shipping-address/${id}/`,
+                    method: 'PUT',
+                    body: formData
+                }
+            },
+            invalidatesTags: [RTK_TAGS.ALL_SHIPPING]
+        }),
+        removeGymattendance: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `shipping-address/${id}/`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: [RTK_TAGS.ALL_SHIPPING]
+        })
+    })
+})
+
+export const { useShippingaddressQuery, useStoreShippingaddressMutation } =
+    shippingaddressApi
+// export const { useGymattendanceQuery, useStoreGymattendanceMutation, useUpdateGymattendanceMutation, useRemoveGymattendanceMutation } = AttendanceApi

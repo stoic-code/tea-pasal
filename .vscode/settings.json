@@ -1,0 +1,15 @@
+{
+    "html.validate.styles": false,
+    "css.completion.triggerPropertyValueCompletion": false,
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingOvertype": "always",
+    "javascript.suggest.completeFunctionCalls": true,
+    "html.hover.documentation": false,
+    "css.lint.unknownAtRules": "ignore",
+    "css.validate": false,
+    "tailwindCSS.rootFontSize": 16,
+    "tailwindCSS.includeLanguages": {
+      "plaintext": "html"
+    },
+    "editor.inlineSuggest.enabled": true,
+  }

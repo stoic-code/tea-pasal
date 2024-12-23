@@ -1,0 +1,171 @@
+"use client"
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+const ImageLink  ='/assets/images/banner.jpg'
+import Sidepage from '@/app/pages/sidebar/Sidepage'
+// import { fetchApiData } from '@/utils/fetchApiData'
+import { fetchApiData } from '@/utils/fetchApiData'
+
+export default function Categories() {
+    const [category, setCategories] = useState([])
+    useEffect(() => {
+        async function fetchCategories() {
+            let data = await fetchApiData({
+                url: '/categories/?size=2000',
+                defaultValue: []
+            })
+            setCategories(data)
+            // console.log(data[0]);
+            console.log(JSON.stringify(data, null, 2))
+        }
+        fetchCategories()
+    }, [])
+
+    const [expandedCategories, setExpandedCategories] = useState([])
+
+    const handleToggleExpand = (categoryId) => {
+        if (expandedCategories.includes(categoryId)) {
+            setExpandedCategories(
+                expandedCategories.filter((id) => id !== categoryId)
+            )
+        } else {
+            setExpandedCategories([...expandedCategories, categoryId])
+        }
+    }
+
+    return (
+        <>
+            <div className="col-span-1 hidden md:block ">
+                {/* <div>
+          <div className={`text-2xl font-bold ${"playfair"}`}>
+            Category
+            <hr className="h-px my-3 bg-gray-200 border-0"></hr>
+          </div>
+          <ul className='text-md grid gap-3 my-4 '>
+            <li className='flex justify-between mr-4'>Green Teas <span className='font-bold text-xl'>+</span></li>
+            <li className='flex justify-between mr-4'>Black Teas <span className='font-bold text-xl'>+</span></li>
+            <li className='flex justify-between mr-4'>Oolong Teas <span className='font-bold text-xl'>+</span></li>
+            <li className='flex justify-between mr-4'>White Teas <span className='font-bold text-xl'>+</span></li>
+          </ul>
+        </div> */}
+
+                <div>
+                    <div className={`text-2xl font-bold`}>
+                        Category
+                        <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                    </div>
+                    <ul className="text-md my-4 grid gap-3">
+                        {category.map((data) => (
+                            <li
+                                key={data.id}
+                                className="mr-4 flex justify-between"
+                            >
+                                {data.name}{' '}
+                                <span
+                                    className="text-xl font-bold"
+                                    onClick={() => handleToggleExpand(data.id)}
+                                >
+                                    {expandedCategories.includes(data.id)
+                                        ? '-'
+                                        : '+'}
+                                </span>
+                                {expandedCategories.includes(data.id) &&
+                                    data.categories &&
+                                    data.categories.length > 0 && (
+                                        <ul>
+                                            {data.categories.map(
+                                                (subCategory) => (
+                                                    <li key={subCategory.id}>
+                                                        {subCategory.name}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="mt-12">
+                    <div className={`text-2xl font-bold ${"playfair"}`}>
+                        Shop By Weight
+                        <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                    </div>
+                    <ul className="text-md my-4  flex gap-3 ">
+                        <li className="flex justify-between rounded-lg border p-2">
+                            100 gm
+                        </li>
+                        <li className="flex justify-between rounded-lg border p-2">
+                            250 gm
+                        </li>
+                        <li className="flex justify-between rounded-lg border p-2">
+                            500 gm
+                        </li>
+                    </ul>
+                </div>
+                <div className="mt-12">
+                    <div className={`text-2xl font-bold ${"playfair"}`}>
+                        Shop By Brand
+                        <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                    </div>
+                    <ul className="text-md my-4 flex flex-wrap  justify-start gap-3 ">
+                        <li className="flex justify-between rounded-lg border p-2">
+                            Tea Traders
+                        </li>
+                        <li className="flex justify-between rounded-lg border p-2">
+                            Premium Traders
+                        </li>
+                        <li className="flex justify-between rounded-lg border p-2">
+                            Kashmire Traders
+                        </li>
+                    </ul>
+                </div>
+                <div className="mt-12">
+                    <div className={`text-2xl font-bold ${"playfair"}`}>
+                        Shop By Type
+                        <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                    </div>
+                    <ul className="text-md my-4 flex  justify-start gap-3 ">
+                        <li className="flex justify-between rounded-lg border p-2">
+                            Loose Leaf
+                        </li>
+                        <li className="flex justify-between rounded-lg border p-2">
+                            Tea Bag
+                        </li>
+                    </ul>
+                </div>
+                <div className="my-12">
+                    <div className={`text-2xl font-bold ${"playfair"}`}>
+                        Best Seller
+                        <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                    </div>
+                    <div>
+                        <Image
+                            className=" w-full object-cover "
+                            src={ImageLink}
+                            width={100}
+                            height={100}
+                            alt="image"
+                        />
+                    </div>
+                    <div className="mt-3 flex flex-col items-center justify-center gap-3 align-middle">
+                        <span>Tea Traders</span>
+                        <div className={`text-xl font-bold ${"playfair"}`}>
+                            Oolong Tea
+                        </div>
+                        <div>⭐️⭐️⭐️⭐️⭐️</div>
+                        Rs 300.00
+                        <Sidepage />
+                    </div>
+                    <div className="flex justify-center gap-4 pt-4">
+                        <div className="btn flex">{`<`}</div>
+                        <div className="btn flex">{`>`}</div>
+                    </div>
+
+                    <hr className="my-3 h-px border-0 bg-gray-200"></hr>
+                </div>
+            </div>
+        </>
+    )
+}
